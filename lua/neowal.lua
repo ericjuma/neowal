@@ -1,9 +1,3 @@
--- Name:         Onebuddy
--- Description:  Light and dark atom one theme
--- Author:       Th3Whit3Wolf <the.white.wolf.is.1337@gmail.com>
--- Maintainer:   Th3Whit3Wolf <the.white.wolf.is.1337@gmail.com>
--- Website:      httpc.//github.com/Th3Whit3Wolf/onebuddy
--- License:      MIT
 vim.cmd('packadd colorbuddy.nvim')
 local Color, c, Group, g, s = require("colorbuddy").setup()
 local b = s.bold
@@ -16,55 +10,60 @@ local sto = s.standout
 local no = s.NONE
 local v = vim
 
-v.g.colors_name = 'onebuddy'
-if v.o.background == 'dark' then
-    Color.new('mono_1', "#abb2bf")
-    Color.new('mono_2', "#828997")
-    Color.new('mono_3', "#5c6370")
-    Color.new('mono_4', "#4b5263")
-    Color.new('hue_1', "#56b6c2")
-    Color.new('hue_2', "#61afef")
-    Color.new('hue_3', "#c678dd")
-    Color.new('hue_4', "#98c379")
-    Color.new('hue_5', "#e06c75")
-    Color.new('hue_5_2', "#be5046")
-    Color.new('hue_6', "#d19a66")
-    Color.new('hue_6_2', "#e5c07b")
-    Color.new('syntax_bg', "#282c34")
-    Color.new('syntax_gutter', "#636d83")
-    Color.new('syntax_cursor', "#2c323c")
-    Color.new('syntax_accent', "#528bff")
-    Color.new('vertsplit', "#181a1f")
-    Color.new('special_grey', "#3b4048")
-    Color.new('visual_grey', "#3e4452")
-    Color.new('pmenu', "#333841")
-else
-    Color.new('mono_1', "#494b53")
-    Color.new('mono_2', "#696c77")
-    Color.new('mono_3', "#a0a1a7")
-    Color.new('mono_4', "#c2c2c3")
-    Color.new('hue_1', "#0184bc")
-    Color.new('hue_2', "#4078f2")
-    Color.new('hue_3', "#a626a4")
-    Color.new('hue_4', "#50a14f")
-    Color.new('hue_5', "#e45649")
-    Color.new('hue_5_2', "#ca1243")
-    Color.new('hue_6', "#986801")
-    Color.new('hue_6_2', "#c18401")
-    Color.new('syntax_bg', "#fafafa")
-    Color.new('syntax_gutter', "#9e9e9e")
-    Color.new('syntax_cursor', "#f0f0f0")
-    Color.new('syntax_accent', "#526fff")
-    Color.new('syntax_accent_2', "#0083be")
-    Color.new('vertsplit', "#e7e9e1")
-    Color.new('special_grey', "#d3d3d3")
-    Color.new('visual_grey', "#d0d0d0")
-    Color.new('pmenu', "#dfdfdf")
-end
-
+v.colors_name = 'neowal'
 -------------------------
 -- Vim Terminal Colors --
 -------------------------
+-- v.g.terminal_color_0  = "#353a44"
+-- v.g.terminal_color_8  = "#353a44"
+-- v.g.terminal_color_1  = "#e88388"
+-- v.g.terminal_color_9  = "#e88388"
+-- v.g.terminal_color_2  = "#a7cc8c"
+-- v.g.terminal_color_10 = "#a7cc8c"
+-- v.g.terminal_color_3  = "#ebca8d"
+-- v.g.terminal_color_11 = "#ebca8d"
+-- v.g.terminal_color_4  = "#72bef2"
+-- v.g.terminal_color_12 = "#72bef2"
+-- v.g.terminal_color_5  = "#d291e4"
+-- v.g.terminal_color_13 = "#d291e4"
+-- v.g.terminal_color_6  = "#65c2cd"
+-- v.g.terminal_color_14 = "#65c2cd"
+-- v.g.terminal_color_7  = "#e3e5e9"
+-- v.g.terminal_color_15 = "#e3e5e9"
+
+-- v.colors_name = 'spacebuddy'
+-- Color.new('mono_1', "#abb2bf")
+-- Color.new('mono_2', "#828997")
+-- Color.new('mono_3', "#5c6370")
+-- Color.new('mono_4', "#4b5263")
+-- Color.new('hue_1', "#56b6c2")
+-- Color.new('hue_2', "#61afef")
+-- Color.new('hue_3', "#c678dd")
+-- Color.new('hue_4', "#98c379")
+-- Color.new('hue_5', "#e06c75")
+-- Color.new('hue_5_2', "#be5046")
+-- Color.new('hue_6', "#d19a66")
+-- Color.new('hue_6_2', "#e5c07b")
+-- Color.new('syntax_bg', "#282c34")
+-- Color.new('syntax_gutter', "#636d83")
+-- Color.new('syntax_cursor', "#2c323c")
+-- Color.new('syntax_accent', "#528bff")
+-- Color.new('vertsplit', "#181a1f")
+-- Color.new('special_grey', "#3b4048")
+-- Color.new('visual_grey', "#3e4452")
+-- Color.new('pmenu', "#333841")
+--
+
+for l in io.lines("/home/me/.cache/wal/colors-kitty.conf") do
+    local parts = l:gmatch("%S+")
+    local wal_color_name = parts()
+    local wal_color_code = parts()
+    if (wal_color_name and wal_color_code) then
+        Color.new(wal_color_name, wal_color_code)
+    end
+end
+
+Color.new("test", "#00ff00")
 
 v.g.terminal_color_0  = "#353a44"
 v.g.terminal_color_8  = "#353a44"
@@ -82,6 +81,37 @@ v.g.terminal_color_6  = "#65c2cd"
 v.g.terminal_color_14 = "#65c2cd"
 v.g.terminal_color_7  = "#e3e5e9"
 v.g.terminal_color_15 = "#e3e5e9"
+
+-- color0: dark grey, sometimes background
+-- color1-6, 9-14: hues
+-- color8: medium grey
+-- color7: light grey, sometimes foreground *
+-- color15: lightest grey/white *
+c.mono_1 = c.foreground -- Normal text
+c.mono_2 = c.color8
+c.mono_3 = c.color8 -- Comments
+c.mono_4 = c.color8:dark(.05) -- Wildmenu selection background, line nums
+
+c.hue_1 = c.color6
+c.hue_2 = c.color4
+c.hue_3 = c.color5
+c.hue_4 = c.color2
+c.hue_5 = c.color1
+c.hue_5_2 = c.color9
+c.hue_6 = c.color3
+c.hue_6_2 = c.color11
+
+c.syntax_bg = c.background -- must be theme bg
+c.syntax_gutter = c.color8
+c.syntax_cursor = c.background:dark(.01) -- colorcolumn, should be darkbg
+c.syntax_accent = c.color2
+
+c.vertsplit = c.color0
+c.special_grey = c.color15 -- Escaped characters
+c.visual_grey = c.color8
+c.pmenu = c.color8
+
+
 
 ----------------------
 -- Vim Editor Color --
@@ -117,7 +147,7 @@ Group.new('Search',       c.mono_3,       c.hue_6_2,        no)
 Group.new('SpecialKey',   c.special_grey, c.syntax_bg,      no)
 Group.new('Whitespace',   c.special_grey, c.syntax_bg,      no)
 Group.new('StatusLine',   c.mono_1,       c.syntax_cursor,  no)
-Group.new('StatusLineNC', c.mono_3,       c.syntax_bg,      no)
+Group.new('StatusLineNC', c.mono_3,       c.syntax_bg:dark(.002),      no) -- changed so sline bg isnt invisible
 Group.new('TabLine',      c.mono_2,       c.visual_grey,    no)
 Group.new('TabLineFill',  c.mono_3,       c.visual_grey,    no)
 Group.new('TabLineSel',   c.mono_3,       c.hue_2,          no)
