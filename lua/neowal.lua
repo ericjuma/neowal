@@ -54,7 +54,7 @@ v.colors_name = 'neowal'
 -- Color.new('pmenu', "#333841")
 --
 
-for l in io.lines("/home/me/.cache/wal/colors-kitty.conf") do
+for l in io.lines(os.getenv("HOME") .. "/.cache/wal/colors-kitty.conf") do
     local parts = l:gmatch("%S+")
     local wal_color_name = parts()
     local wal_color_code = parts()
